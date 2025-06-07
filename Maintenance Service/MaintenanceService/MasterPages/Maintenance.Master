@@ -1,0 +1,121 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Maintenance.master.cs" Inherits="MaintenanceService.MasterPages.Maintenance" %>
+
+<%@ Register assembly="DevExpress.Web.v14.2, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+     <title></title>
+    <link href="~/Style/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 269px;
+        }
+        .auto-style2
+        {
+            width: 269px;
+            height: 70px;
+        }
+        .auto-style3
+        {
+            height: 70px;
+            text-align: right;
+        }
+        </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+   <div id="divMain" class="divMain">
+        <div id="divHeader" class="divHeader">
+            
+            <table style="width:100%; background-image: url('../Images/BK.png'); background-repeat: no-repeat; background-attachment: scroll; background-position: left top"">
+                <tr>
+                    <td class="auto-style2">
+            
+                        </td>
+                    <td class="auto-style3" style="text-align: right">
+
+                    </td>
+                    <td class="auto-style3">
+                        <table class="dxflInternalEditorTable_Moderno">
+                            <tr>
+                                <td>
+                                    <asp:Label ID="lblName" runat="server" Text="Name"></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:Label ID="lblDept" runat="server" Text="Dept."></asp:Label>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">
+            
+                        &nbsp;</td>
+                    <td style="text-align: right">
+
+                        &nbsp;</td>
+                    <td>
+
+                        <dx:ASPxMenu ID="ASPxMenu1" runat="server" EnableTheming="True" style="margin-bottom: 0px" Theme="Moderno" Font-Bold="True">
+                            <Items>
+                                <dx:MenuItem Text="แจ้งปัญหา สร้าง/ซ่อม" ToolTip="Create/Repair Service Request" NavigateUrl="~/Maintenance/FrmRequest.aspx">
+                                    <ItemStyle Font-Bold="True" ForeColor="#660066" />
+                                </dx:MenuItem>
+                                <dx:MenuItem Text="ตรวจสอบสถานะ สร้าง/ซ่อม" ToolTip="Create/Repair Status Check " NavigateUrl="~/Maintenance/FrmCheckStatus.aspx">
+                                    <ItemStyle Font-Bold="True" ForeColor="#660066" />
+                                </dx:MenuItem>
+                                  <dx:MenuItem Text="Manager Tasks" ToolTip="Manager Tasks" NavigateUrl="~/Maintenance/ManagerTasks.aspx">
+                                      <Items>
+                                          <dx:MenuItem NavigateUrl="~/Maintenance/ManagerTasks.aspx" Text="      List Approval      " ToolTip="      List Approval      ">
+                                          </dx:MenuItem>
+                                          <dx:MenuItem NavigateUrl="~/Maintenance/ManagerHistory.aspx" Text="      List History            " ToolTip="      List History            ">
+                                          </dx:MenuItem>
+                                      </Items>
+                                    <ItemStyle Font-Bold="True" ForeColor="#660066" />
+                                </dx:MenuItem>
+                                <dx:MenuItem Text="ตรวจสอบอนุมัติ สร้าง/ซ่อม(MN)" ToolTip="Maintenance Service" NavigateUrl="~/Maintenance/MaintenanceService.aspx">
+                                    <Items>
+                                        <dx:MenuItem NavigateUrl="~/Maintenance/MaintenanceService.aspx" Text="ตรวจสอบรายการใบแจ้ง สร้าง/ซ่อม  " ToolTip="ตรวจสอบรายการใบแจ้ง สร้าง/ซ่อม  ">
+                                        </dx:MenuItem>
+                                        <dx:MenuItem Text="ตรวจสอบรายการย้อนหลัง สร้าง/ซ่อม" ToolTip="ตรวจสอบรายการย้อนหลัง สร้าง/ซ่อม" NavigateUrl="~/Maintenance/MaintenanceHistory.aspx">
+                                        </dx:MenuItem>
+                                    </Items>
+                                    <ItemStyle Font-Bold="True" ForeColor="#660066" />
+                                </dx:MenuItem>
+                                <dx:MenuItem Text="ออกจากระบบ" ToolTip="Log Out" NavigateUrl="~/Maintenance/FrmLogin.aspx">
+                                    <ItemStyle Font-Bold="True" ForeColor="#660066"/>
+                                </dx:MenuItem>
+                            </Items>
+                        </dx:ASPxMenu>
+            
+                    </td>
+                </tr>
+            </table>
+            
+        </div>
+          <div id="divContent" class="divContent">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+             <asp:ScriptManager ID ="script1" runat="server"></asp:ScriptManager>
+            </asp:ContentPlaceHolder>
+        </div>
+        <div id="divFooter" class="divFooter">
+            
+            <table style="width: 100%;">
+                <tr>
+                    <td style="padding: 10px">
+                        <asp:Label ID="Label2" runat="server" Text="Copyright © by La-Z-Boy (Thailand) Co., Ltd. 2022"></asp:Label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

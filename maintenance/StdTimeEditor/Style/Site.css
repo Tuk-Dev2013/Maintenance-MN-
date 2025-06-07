@@ -1,0 +1,46 @@
+﻿body {
+    background: #c0c0c0;
+}
+p {
+    margin: 0;
+}
+
+p.Header {
+    text-decoration: underline;
+    font-size: x-large;
+    color: #0070AF;
+}
+
+/*Master Page*/
+.divHeader {
+    width: 100%;
+    background-color: #ffffff;
+}
+.divMenu {
+    width: 100%;
+    background: #0070AF;
+}
+.divMain {
+    width: 100%;
+    border: #000000;
+    border-style: solid;
+    border-width: 1px;
+    margin: 0px auto 0px auto;
+}
+.divContent {
+    width: 100%;
+    background: #ffffff;
+}
+.divFooter {
+    width: 100%;
+    background: #ffffff;
+    text-align: center;
+    border-top-style: solid;
+    border-top-color: #0070af;
+    border-top-width: 2px;
+}
+
+/*Pages*/
+.divContentPage {
+    padding: 0px;
+}

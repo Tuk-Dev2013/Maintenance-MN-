@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
+    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\STDTime</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/StdTimeEditor.dll">
+      <publishTime>09/15/2021 14:48:10</publishTime>
+    </File>
+    <File Include="DataAccess/ProjectDataSet.xsc">
+      <publishTime>09/15/2021 13:45:59</publishTime>
+    </File>
+    <File Include="DataAccess/ProjectDataSet.xss">
+      <publishTime>09/15/2021 13:45:59</publishTime>
+    </File>
+    <File Include="default.aspx">
+      <publishTime>06/04/2016 16:01:58</publishTime>
+    </File>
+    <File Include="Images/header.png">
+      <publishTime>06/04/2016 16:01:58</publishTime>
+    </File>
+    <File Include="MasterPages/Site.Master">
+      <publishTime>09/15/2021 11:09:08</publishTime>
+    </File>
+    <File Include="Pages/EXPORT.aspx">
+      <publishTime>06/19/2021 08:41:39</publishTime>
+    </File>
+    <File Include="Pages/FrmLogFile.aspx">
+      <publishTime>08/17/2021 09:33:37</publishTime>
+    </File>
+    <File Include="Pages/Home.aspx">
+      <publishTime>09/15/2021 14:40:19</publishTime>
+    </File>
+    <File Include="Pages/Page_RunningTime.aspx">
+      <publishTime>08/21/2019 16:07:16</publishTime>
+    </File>
+    <File Include="Pages/Page_StdSewing.aspx">
+      <publishTime>11/17/2018 09:16:28</publishTime>
+    </File>
+    <File Include="Pages/ReportTimeStudy.aspx">
+      <publishTime>09/15/2021 11:51:46</publishTime>
+    </File>
+    <File Include="Style/Site.css">
+      <publishTime>06/04/2016 16:01:58</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>09/15/2021 14:48:11</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

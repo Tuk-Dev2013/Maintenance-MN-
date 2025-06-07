@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\STDTime</_PublishTargetUrl>
+    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
+    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="App_code/CGlobal.cs">
+      <publishTime>02/07/2022 13:29:41</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>02/09/2022 08:45:07</publishTime>
+    </File>
+    <File Include="bin/StdTimeEditor.dll">
+      <publishTime>06/06/2025 11:39:11</publishTime>
+    </File>
+    <File Include="bin/StdTimeEditor.pdb">
+      <publishTime>01/16/2020 12:05:27</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.dll">
+      <publishTime>07/10/2012 21:52:12</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>02/09/2022 08:45:08</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.WebRequest.dll">
+      <publishTime>07/10/2012 21:52:12</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>02/09/2022 08:45:09</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>02/09/2022 08:45:09</publishTime>
+    </File>
+    <File Include="DataAccess/ProjectDataSet.xsc">
+      <publishTime>10/24/2022 11:07:50</publishTime>
+    </File>
+    <File Include="DataAccess/ProjectDataSet.xss">
+      <publishTime>10/24/2022 11:07:50</publishTime>
+    </File>
+    <File Include="default.aspx">
+      <publishTime>06/04/2016 16:01:58</publishTime>
+    </File>
+    <File Include="Employee.aspx">
+      <publishTime>02/22/2022 15:28:42</publishTime>
+    </File>
+    <File Include="Frmgroupreport.aspx">
+      <publishTime>10/24/2022 10:55:17</publishTime>
+    </File>
+    <File Include="FrmLogin.aspx">
+      <publishTime>10/24/2022 15:47:13</publishTime>
+    </File>
+    <File Include="FrmPrintBal.aspx">
+      <publishTime>09/09/2022 11:10:43</publishTime>
+    </File>
+    <File Include="FrmPrintProduction.aspx">
+      <publishTime>05/20/2022 11:05:05</publishTime>
+    </File>
+    <File Include="Images/5008016.png">
+      <publishTime>03/02/2022 10:20:12</publishTime>
+    </File>
+    <File Include="Images/5307019.png">
+      <publishTime>03/02/2022 10:20:12</publishTime>
+    </File>
+    <File Include="Images/5806005.png">
+      <publishTime>03/02/2022 10:38:28</publishTime>
+    </File>
+    <File Include="Images/5908001.png">
+      <publishTime>03/02/2022 10:20:12</publishTime>
+    </File>
+    <File Include="Images/6107002.png">
+      <publishTime>03/02/2022 10:20:12</publishTime>
+    </File>
+    <File Include="Images/6209007.png">
+      <publishTime>03/02/2022 10:20:12</publishTime>
+    </File>
+    <File Include="Images/6402008.png">
+      <publishTime>03/02/2022 10:20:12</publishTime>
+    </File>
+    <File Include="Images/6501020.png">
+      <publishTime>03/02/2022 10:20:12</publishTime>
+    </File>
+    <File Include="Images/edit.png">
+      <publishTime>02/07/2022 14:10:48</publishTime>
+    </File>
+    <File Include="Images/header.png">
+      <publishTime>06/04/2016 16:01:58</publishTime>
+    </File>
+    <File Include="Images/history.png">
+      <publishTime>02/07/2022 14:10:48</publishTime>
+    </File>
+    <File Include="Images/Mn.png">
+      <publishTime>02/07/2022 09:29:00</publishTime>
+    </File>
+    <File Include="Images/MN1.png">
+      <publishTime>02/07/2022 09:33:57</publishTime>
+    </File>
+    <File Include="Images/pin.png">
+      <publishTime>02/08/2022 11:25:50</publishTime>
+    </File>
+    <File Include="Images/png-transparent-preventive-maintenanceMN.png">
+      <publishTime>02/07/2022 09:33:57</publishTime>
+    </File>
+    <File Include="Images/printer.png">
+      <publishTime>02/07/2022 14:10:48</publishTime>
+    </File>
+    <File Include="Images/view.png">
+      <publishTime>02/07/2022 14:10:48</publishTime>
+    </File>
+    <File Include="MasterPages/Site.Master">
+      <publishTime>10/25/2022 08:17:31</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>02/09/2022 08:45:09</publishTime>
+    </File>
+    <File Include="PageBarcodeIN.aspx">
+      <publishTime>10/25/2022 08:23:26</publishTime>
+    </File>
+    <File Include="PageBarcodeOut.aspx">
+      <publishTime>02/22/2022 14:17:04</publishTime>
+    </File>
+    <File Include="PageMovement.aspx">
+      <publishTime>02/09/2022 16:31:24</publishTime>
+    </File>
+    <File Include="PageNeedtoOrder.aspx">
+      <publishTime>02/09/2022 15:21:44</publishTime>
+    </File>
+    <File Include="PageOrder.aspx">
+      <publishTime>10/24/2022 15:56:20</publishTime>
+    </File>
+    <File Include="Pages/EXPORT.aspx">
+      <publishTime>06/19/2021 08:41:39</publishTime>
+    </File>
+    <File Include="Pages/FrmLogFile.aspx">
+      <publishTime>08/17/2021 09:33:37</publishTime>
+    </File>
+    <File Include="Pages/Home.aspx">
+      <publishTime>09/15/2021 14:40:19</publishTime>
+    </File>
+    <File Include="Pages/Page_StdSewing.aspx">
+      <publishTime>11/17/2018 09:16:28</publishTime>
+    </File>
+    <File Include="Pages/ReportTimeStudy.aspx">
+      <publishTime>09/15/2021 11:51:46</publishTime>
+    </File>
+    <File Include="Pages/TimeStudy.aspx">
+      <publishTime>09/16/2021 08:45:31</publishTime>
+    </File>
+    <File Include="PageStockbal.aspx">
+      <publishTime>02/21/2023 11:24:40</publishTime>
+    </File>
+    <File Include="Properties/Settings.settings">
+      <publishTime>02/09/2022 11:41:56</publishTime>
+    </File>
+    <File Include="StockPrintBarcode.aspx">
+      <publishTime>02/17/2022 13:14:04</publishTime>
+    </File>
+    <File Include="Style/Site.css">
+      <publishTime>02/07/2022 10:00:49</publishTime>
+    </File>
+    <File Include="ViewDetails.aspx">
+      <publishTime>05/20/2022 14:09:10</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>06/06/2025 11:39:12</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

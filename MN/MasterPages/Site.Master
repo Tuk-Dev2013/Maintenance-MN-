@@ -1,0 +1,85 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="MRPSystem.MasterPages.Site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="~/Style/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 269px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="divMain" class="divMain">
+        <div id="divHeader" class="divHeader">
+            
+            <table style="width:100%;">
+                <tr>
+                    <td class="auto-style1">
+            
+            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/header.png" />
+            
+                    </td>
+                    <td>
+
+            <asp:Image ID="Image3" runat="server" ImageUrl="~/Images/MN1.png" Height="90px" Width="221px" />
+            
+                    </td>
+                    <td>
+                        <p style="padding: 10px; text-align: right">
+            
+            <asp:Image ID="Image2" runat="server" ImageUrl="~/Images/Mn.png" Height="86px" Width="205px" />
+            
+                        
+                        </p>
+                    </td>
+                </tr>
+            </table>
+            
+        </div>
+        <div id="divMenu" class="divMenu">
+            <div style="border: 2px solid #0070BD;">
+                <asp:Menu ID="Menu1" runat="server" BackColor="#0070AF" BorderColor="White" BorderStyle="Solid" BorderWidth="1px" DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="0.8em" ForeColor="White" Orientation="Horizontal" StaticSubMenuIndent="10px" style="font-size: large">
+                    <DynamicHoverStyle BackColor="#666666" ForeColor="White" />
+                    <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                    <DynamicMenuStyle BackColor="#E3EAEB" />
+                    <DynamicSelectedStyle BackColor="#1C5E55" />
+                    <Items>
+                       <asp:MenuItem NavigateUrl="~/PageStockbal.aspx" Text="HOME" Value="HOME"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/StockPrintBarcode.aspx" Text="Stock Balance" Value="Stock Balance"></asp:MenuItem>
+                        <asp:MenuItem Text="Barcode IN" Value="Barcode IN" NavigateUrl="~/PageBarcodeIN.aspx"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/PageBarcodeOut.aspx" Text="Barcode Out" Value="Barcode Out"></asp:MenuItem>
+                         <asp:MenuItem Text="Need To Order" Value="Need To Order" NavigateUrl="~/PageNeedtoOrder.aspx"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/PageMovement.aspx" Text="Movement Report" Value="Movement Report"></asp:MenuItem>
+                    </Items>
+                    <StaticHoverStyle BackColor="#0099FF" ForeColor="White" />
+                    <StaticMenuItemStyle BorderStyle="Solid" BorderWidth="1px" HorizontalPadding="5px" VerticalPadding="2px" />
+                    <StaticSelectedStyle BackColor="#1C5E55" />
+                </asp:Menu>
+            </div>
+        </div>
+        <div id="divContent" class="divContent">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+             <asp:ScriptManager ID ="script1" runat="server"></asp:ScriptManager>
+            </asp:ContentPlaceHolder>
+        </div>
+        <div id="divFooter" class="divFooter">
+            
+            <table style="width: 100%;">
+                <tr>
+                    <td style="padding: 10px">
+                        <asp:Label ID="Label2" runat="server" Text="Copyright © by La-Z-Boy (Thailand) Co., Ltd. 2022"></asp:Label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

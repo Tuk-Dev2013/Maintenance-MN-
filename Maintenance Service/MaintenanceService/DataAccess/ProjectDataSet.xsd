@@ -1,0 +1,1535 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ProjectDataSet" targetNamespace="http://tempuri.org/ProjectDataSet.xsd" xmlns:mstns="http://tempuri.org/ProjectDataSet.xsd" xmlns="http://tempuri.org/ProjectDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="DBBARCODEConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="DBBARCODEConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.DBBARCODEConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="DBBarcode" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DBBarcode (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.DBBarcode.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBBarcode (Web.config)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ROW_NUMBER() OVER(ORDER BY Createdate Desc) AS Row,Itemcode, ItemName, Model, Location, MaxItem, MinItem, QtyIn, QtyOut, QtyBal, Createdate
+FROM   [dbo].[tb_StockBal] Order by Createdate Desc
+</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tb_StockMovTableAdapter" GeneratorDataComponentClassName="tb_StockMovTableAdapter" Name="tb_StockMov" UserDataComponentName="tb_StockMovTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBBarcode (Web.config)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillMov" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDataMov" GeneratorSourceName="FillMov" GetMethodModifier="Public" GetMethodName="GetDataMov" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataMov" UserSourceName="FillMov">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT TOP (200) MovID, ItemCode, ItemName, Location, QtyIn, CreateDate,ROW_NUMBER() OVER(ORDER BY CreateDate Desc) AS Row
+FROM     tb_StockMov
+WHERE  (Status = 'IN')
+ORDER BY CreateDate DESC</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="MovID" DataSetColumn="MovID" />
+              <Mapping SourceColumn="ItemCode" DataSetColumn="ItemCode" />
+              <Mapping SourceColumn="ItemName" DataSetColumn="ItemName" />
+              <Mapping SourceColumn="Location" DataSetColumn="Location" />
+              <Mapping SourceColumn="QtyIn" DataSetColumn="QtyIn" />
+              <Mapping SourceColumn="CreateDate" DataSetColumn="CreateDate" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable2TableAdapter" GeneratorDataComponentClassName="DataTable2TableAdapter" Name="DataTable2" UserDataComponentName="DataTable2TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBBarcode (Web.config)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillOut" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDataOut" GeneratorSourceName="FillOut" GetMethodModifier="Public" GetMethodName="GetDataOut" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataOut" UserSourceName="FillOut">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT top 200  MovID, ItemCode, ItemName, Location, QtyIn as QtyOut,CreateDate,ROW_NUMBER() OVER(ORDER BY CreateDate Desc) AS Row,UserName as Employee
+FROM     [dbo].[tb_StockMov]
+where Status='Out'
+order by CreateDate Desc</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="A_ GetReportTableAdapter" GeneratorDataComponentClassName="A__GetReportTableAdapter" Name="A_ GetReport" UserDataComponentName="A_ GetReportTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBBarcode (Web.config)" DbObjectName="MN.dbo.[A_ GetReport]" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.[A_ GetReport]</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@tmpDate1" Precision="0" ProviderType="NVarChar" Scale="0" Size="250" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@tmpDate2" Precision="0" ProviderType="NVarChar" Scale="0" Size="250" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Row" DataSetColumn="Row" />
+              <Mapping SourceColumn="ItemCode" DataSetColumn="ItemCode" />
+              <Mapping SourceColumn="ItemName" DataSetColumn="ItemName" />
+              <Mapping SourceColumn="Location" DataSetColumn="Location" />
+              <Mapping SourceColumn="QtyIn" DataSetColumn="QtyIn" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="Employee" DataSetColumn="Employee" />
+              <Mapping SourceColumn="CreateDate" DataSetColumn="CreateDate" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tb_EmpTableAdapter" GeneratorDataComponentClassName="tb_EmpTableAdapter" Name="tb_Emp" UserDataComponentName="tb_EmpTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBBarcode (Web.config)" DbObjectName="MN.dbo.tb_Emp" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataEmp" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetDataEmp" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataEmp" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[tb_Emp] WHERE (([EMPCode] = @Original_EMPCode))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_EMPCode" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="EMPCode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[tb_Emp] ([EMPCode], [EMPName], [Status]) VALUES (@EMPCode, @EMPName, @Status)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@EMPCode" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="EMPCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@EMPName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="EMPName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Status" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Status" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from [dbo].[tb_Emp]</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[tb_Emp] SET [EMPCode] = @EMPCode, [EMPName] = @EMPName, [Status] = @Status WHERE (([EMPCode] = @Original_EMPCode))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@EMPCode" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="EMPCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@EMPName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="EMPName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Status" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Status" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_EMPCode" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="EMPCode" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="EMPCode" DataSetColumn="EMPCode" />
+              <Mapping SourceColumn="EMPName" DataSetColumn="EMPName" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable3TableAdapter" GeneratorDataComponentClassName="DataTable3TableAdapter" Name="DataTable3" UserDataComponentName="DataTable3TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBBarcode (Web.config)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDataProductionOrder" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetDataProductionOrder" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataProductionOrder" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ROW_NUMBER() OVER (ORDER BY OrderDate DESC) AS Row, Itemcode, ItemName, OrderDate, ReceivedDate, OrderQty, Remark, Status
+FROM     [dbo].[ProductionOrder]
+ORDER BY OrderDate DESC, Status DESC</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tb_DocIssueTableAdapter" GeneratorDataComponentClassName="tb_DocIssueTableAdapter" Name="tb_DocIssue" UserDataComponentName="tb_DocIssueTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBBarcode (Web.config)" DbObjectName="MN.dbo.tb_DocIssue" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [tb_DocIssue] WHERE (([IssueNo] = @Original_IssueNo))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [tb_DocIssue] ([IssueNo], [IssueName], [IssueDate], [IssueDept], [IssueHead], [ManagerRemark], [Status], [MNName], [MNDate], [MNIssueName], [MNStatus], [CkUser]) VALUES (@IssueNo, @IssueName, @IssueDate, @IssueDept, @IssueHead, @ManagerRemark, @Status, @MNName, @MNDate, @MNIssueName, @MNStatus, @CkUser)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@IssueDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="IssueDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueDept" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueDept" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueHead" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueHead" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@ManagerRemark" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ManagerRemark" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Status" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Status" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@MNDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="MNDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNIssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNIssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNStatus" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNStatus" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CkUser" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CkUser" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select IssueNo,IssueName,IssueDate,IssueDept,IssueHead,ManagerRemark, Status,MNName,MNDate,MNIssueName,MNStatus,CkUser
+FROM     tb_DocIssue
+order by IssueDate Desc</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [tb_DocIssue] SET [IssueNo] = @IssueNo, [IssueName] = @IssueName, [IssueDate] = @IssueDate, [IssueDept] = @IssueDept, [IssueHead] = @IssueHead, [ManagerRemark] = @ManagerRemark, [Status] = @Status, [MNName] = @MNName, [MNDate] = @MNDate, [MNIssueName] = @MNIssueName, [MNStatus] = @MNStatus, [CkUser] = @CkUser WHERE (([IssueNo] = @Original_IssueNo))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@IssueDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="IssueDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueDept" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueDept" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueHead" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueHead" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@ManagerRemark" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ManagerRemark" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Status" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Status" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@MNDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="MNDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNIssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNIssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNStatus" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNStatus" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CkUser" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CkUser" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IssueNo" DataSetColumn="IssueNo" />
+              <Mapping SourceColumn="IssueName" DataSetColumn="IssueName" />
+              <Mapping SourceColumn="IssueDate" DataSetColumn="IssueDate" />
+              <Mapping SourceColumn="IssueDept" DataSetColumn="IssueDept" />
+              <Mapping SourceColumn="IssueHead" DataSetColumn="IssueHead" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="MNName" DataSetColumn="MNName" />
+              <Mapping SourceColumn="MNDate" DataSetColumn="MNDate" />
+              <Mapping SourceColumn="MNIssueName" DataSetColumn="MNIssueName" />
+              <Mapping SourceColumn="ManagerRemark" DataSetColumn="ManagerRemark" />
+              <Mapping SourceColumn="MNStatus" DataSetColumn="MNStatus" />
+              <Mapping SourceColumn="CkUser" DataSetColumn="CkUser" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tb_DocIssueAppManager" GeneratorDataComponentClassName="tb_DocIssueAppManager" Name="tb_DocIssue1" UserDataComponentName="tb_DocIssueAppManager">
+            <MainSource>
+              <DbSource ConnectionRef="DBBarcode (Web.config)" DbObjectName="MN.dbo.tb_DocIssue" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [tb_DocIssue] WHERE (([IssueNo] = @Original_IssueNo))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [tb_DocIssue] ([IssueNo], [IssueName], [IssueDate], [IssueDept], [IssueHead], [IssueDetail], [Remark], [Status]) VALUES (@IssueNo, @IssueName, @IssueDate, @IssueDept, @IssueHead, @IssueDetail, @Remark, @Status)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@IssueDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="IssueDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueDept" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueDept" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueHead" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueHead" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@IssueDetail" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="IssueDetail" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Remark" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Remark" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Status" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Status" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select IssueNo,IssueName,IssueDate,IssueDept,IssueHead,IssueDetail,Remark,Status
+FROM     tb_DocIssue
+where Status='Requester Submitted'
+and IssueDept=@IssueDept
+order by IssueDate Desc</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="IssueDept" ColumnName="IssueDept" DataSourceName="MN.dbo.tb_DocIssue" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@IssueDept" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="IssueDept" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [tb_DocIssue] SET [IssueNo] = @IssueNo, [IssueName] = @IssueName, [IssueDate] = @IssueDate, [IssueDept] = @IssueDept, [IssueHead] = @IssueHead, [IssueDetail] = @IssueDetail, [Remark] = @Remark, [Status] = @Status WHERE (([IssueNo] = @Original_IssueNo))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@IssueDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="IssueDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueDept" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueDept" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueHead" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueHead" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@IssueDetail" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="IssueDetail" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Remark" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Remark" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Status" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Status" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IssueNo" DataSetColumn="IssueNo" />
+              <Mapping SourceColumn="IssueName" DataSetColumn="IssueName" />
+              <Mapping SourceColumn="IssueDate" DataSetColumn="IssueDate" />
+              <Mapping SourceColumn="IssueDept" DataSetColumn="IssueDept" />
+              <Mapping SourceColumn="IssueHead" DataSetColumn="IssueHead" />
+              <Mapping SourceColumn="IssueDetail" DataSetColumn="IssueDetail" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="Remark" DataSetColumn="Remark" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tb_DocIssueAppMnaagerHistory" GeneratorDataComponentClassName="tb_DocIssueAppMnaagerHistory" Name="tb_DocIssue2" UserDataComponentName="tb_DocIssueAppMnaagerHistory">
+            <MainSource>
+              <DbSource ConnectionRef="DBBarcode (Web.config)" DbObjectName="MN.dbo.tb_DocIssue" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [tb_DocIssue] WHERE (([IssueNo] = @Original_IssueNo))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [tb_DocIssue] ([IssueNo], [IssueName], [IssueDate], [IssueDept], [IssueHead], [IssueDetail], [Remark], [Status], [MNName], [MNDate], [MNIssueName], [MNStatus]) VALUES (@IssueNo, @IssueName, @IssueDate, @IssueDept, @IssueHead, @IssueDetail, @Remark, @Status, @MNName, @MNDate, @MNIssueName, @MNStatus)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@IssueDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="IssueDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueDept" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueDept" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueHead" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueHead" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@IssueDetail" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="IssueDetail" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Remark" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Remark" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Status" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Status" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@MNDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="MNDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNIssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNIssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNStatus" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNStatus" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select IssueNo,IssueName,IssueDate,IssueDept,IssueHead,IssueDetail,Remark,Status,MNName,MNDate,MNIssueName,MNStatus
+FROM     tb_DocIssue
+where Status in('Manager Reject','Manager Approval')
+and IssueDept=@IssueDept
+order by IssueDate Desc</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="IssueDept" ColumnName="IssueDept" DataSourceName="MN.dbo.tb_DocIssue" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@IssueDept" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="IssueDept" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [tb_DocIssue] SET [IssueNo] = @IssueNo, [IssueName] = @IssueName, [IssueDate] = @IssueDate, [IssueDept] = @IssueDept, [IssueHead] = @IssueHead, [IssueDetail] = @IssueDetail, [Remark] = @Remark, [Status] = @Status, [MNName] = @MNName, [MNDate] = @MNDate, [MNIssueName] = @MNIssueName, [MNStatus] = @MNStatus WHERE (([IssueNo] = @Original_IssueNo))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@IssueDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="IssueDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueDept" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueDept" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueHead" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueHead" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@IssueDetail" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="IssueDetail" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Remark" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Remark" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Status" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Status" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@MNDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="MNDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNIssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNIssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNStatus" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNStatus" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IssueNo" DataSetColumn="IssueNo" />
+              <Mapping SourceColumn="IssueName" DataSetColumn="IssueName" />
+              <Mapping SourceColumn="IssueDate" DataSetColumn="IssueDate" />
+              <Mapping SourceColumn="IssueDept" DataSetColumn="IssueDept" />
+              <Mapping SourceColumn="IssueHead" DataSetColumn="IssueHead" />
+              <Mapping SourceColumn="IssueDetail" DataSetColumn="IssueDetail" />
+              <Mapping SourceColumn="Remark" DataSetColumn="Remark" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="MNName" DataSetColumn="MNName" />
+              <Mapping SourceColumn="MNDate" DataSetColumn="MNDate" />
+              <Mapping SourceColumn="MNIssueName" DataSetColumn="MNIssueName" />
+              <Mapping SourceColumn="MNStatus" DataSetColumn="MNStatus" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tb_DocIssueMNChecklist" GeneratorDataComponentClassName="tb_DocIssueMNChecklist" Name="tb_DocIssue3" UserDataComponentName="tb_DocIssueMNChecklist">
+            <MainSource>
+              <DbSource ConnectionRef="DBBarcode (Web.config)" DbObjectName="MN.dbo.tb_DocIssue" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [tb_DocIssue] WHERE (([IssueNo] = @Original_IssueNo))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [tb_DocIssue] ([IssueNo], [IssueName], [IssueDate], [IssueDept], [IssueHead], [ManagerRemark], [Status], [MNName], [MNDate], [MNIssueName], [MNStatus], [TypeHead], [CkUser]) VALUES (@IssueNo, @IssueName, @IssueDate, @IssueDept, @IssueHead, @ManagerRemark, @Status, @MNName, @MNDate, @MNIssueName, @MNStatus, @TypeHead, @CkUser)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@IssueDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="IssueDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueDept" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueDept" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueHead" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueHead" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@ManagerRemark" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ManagerRemark" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Status" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Status" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@MNDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="MNDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNIssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNIssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNStatus" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNStatus" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@TypeHead" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="TypeHead" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CkUser" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CkUser" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select   IssueNo,IssueName,IssueDate,IssueDept,IssueHead,ManagerRemark, Status,MNName,MNDate,MNIssueName,MNStatus,TypeHead,CkUser
+FROM   tb_DocIssue
+where Status='Manager Approval'
+and  isnull(MNStatus,0) in('0','รับเรื่องแล้ว','อยู่ระหว่างดำเนินการ','รอดำเนินการ','รออะไหล่/อุปกรณ์')
+order by IssueDate Desc</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [tb_DocIssue] SET [IssueNo] = @IssueNo, [IssueName] = @IssueName, [IssueDate] = @IssueDate, [IssueDept] = @IssueDept, [IssueHead] = @IssueHead, [ManagerRemark] = @ManagerRemark, [Status] = @Status, [MNName] = @MNName, [MNDate] = @MNDate, [MNIssueName] = @MNIssueName, [MNStatus] = @MNStatus, [TypeHead] = @TypeHead, [CkUser] = @CkUser WHERE (([IssueNo] = @Original_IssueNo))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@IssueDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="IssueDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueDept" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueDept" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueHead" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueHead" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@ManagerRemark" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ManagerRemark" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Status" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Status" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@MNDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="MNDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNIssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNIssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNStatus" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNStatus" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@TypeHead" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="TypeHead" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CkUser" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CkUser" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IssueNo" DataSetColumn="IssueNo" />
+              <Mapping SourceColumn="IssueName" DataSetColumn="IssueName" />
+              <Mapping SourceColumn="IssueDate" DataSetColumn="IssueDate" />
+              <Mapping SourceColumn="IssueDept" DataSetColumn="IssueDept" />
+              <Mapping SourceColumn="IssueHead" DataSetColumn="IssueHead" />
+              <Mapping SourceColumn="ManagerRemark" DataSetColumn="ManagerRemark" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="MNName" DataSetColumn="MNName" />
+              <Mapping SourceColumn="MNDate" DataSetColumn="MNDate" />
+              <Mapping SourceColumn="MNIssueName" DataSetColumn="MNIssueName" />
+              <Mapping SourceColumn="MNStatus" DataSetColumn="MNStatus" />
+              <Mapping SourceColumn="TypeHead" DataSetColumn="TypeHead" />
+              <Mapping SourceColumn="CkUser" DataSetColumn="CkUser" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tb_DocIssueMNHistory" GeneratorDataComponentClassName="tb_DocIssueMNHistory" Name="tb_DocIssue4" UserDataComponentName="tb_DocIssueMNHistory">
+            <MainSource>
+              <DbSource ConnectionRef="DBBarcode (Web.config)" DbObjectName="MN.dbo.tb_DocIssue" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [tb_DocIssue] WHERE (([IssueNo] = @Original_IssueNo))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [tb_DocIssue] ([IssueNo], [IssueName], [IssueDate], [IssueDept], [IssueHead], [ManagerRemark], [Status], [MNName], [MNDate], [MNIssueName], [MNStatus], [TypeHead], [CkUser]) VALUES (@IssueNo, @IssueName, @IssueDate, @IssueDept, @IssueHead, @ManagerRemark, @Status, @MNName, @MNDate, @MNIssueName, @MNStatus, @TypeHead, @CkUser)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@IssueDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="IssueDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueDept" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueDept" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueHead" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueHead" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@ManagerRemark" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ManagerRemark" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Status" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Status" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@MNDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="MNDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNIssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNIssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNStatus" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNStatus" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@TypeHead" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="TypeHead" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CkUser" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CkUser" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select   IssueNo,IssueName,IssueDate,IssueDept,IssueHead,ManagerRemark, Status,MNName,MNDate,MNIssueName,MNStatus,TypeHead,CkUser
+FROM   tb_DocIssue
+where Status='Manager Approval'
+and  isnull(MNStatus,0) in('งานเสร็จสมบูรณ์','ยกเลิกงาน')
+order by IssueDate Desc</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [tb_DocIssue] SET [IssueNo] = @IssueNo, [IssueName] = @IssueName, [IssueDate] = @IssueDate, [IssueDept] = @IssueDept, [IssueHead] = @IssueHead, [ManagerRemark] = @ManagerRemark, [Status] = @Status, [MNName] = @MNName, [MNDate] = @MNDate, [MNIssueName] = @MNIssueName, [MNStatus] = @MNStatus, [TypeHead] = @TypeHead, [CkUser] = @CkUser WHERE (([IssueNo] = @Original_IssueNo))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@IssueDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="IssueDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueDept" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueDept" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueHead" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueHead" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@ManagerRemark" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ManagerRemark" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Status" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Status" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@MNDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="MNDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNIssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNIssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNStatus" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNStatus" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@TypeHead" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="TypeHead" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CkUser" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CkUser" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IssueNo" DataSetColumn="IssueNo" />
+              <Mapping SourceColumn="IssueName" DataSetColumn="IssueName" />
+              <Mapping SourceColumn="IssueDate" DataSetColumn="IssueDate" />
+              <Mapping SourceColumn="IssueDept" DataSetColumn="IssueDept" />
+              <Mapping SourceColumn="IssueHead" DataSetColumn="IssueHead" />
+              <Mapping SourceColumn="ManagerRemark" DataSetColumn="ManagerRemark" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="MNName" DataSetColumn="MNName" />
+              <Mapping SourceColumn="MNDate" DataSetColumn="MNDate" />
+              <Mapping SourceColumn="MNIssueName" DataSetColumn="MNIssueName" />
+              <Mapping SourceColumn="MNStatus" DataSetColumn="MNStatus" />
+              <Mapping SourceColumn="TypeHead" DataSetColumn="TypeHead" />
+              <Mapping SourceColumn="CkUser" DataSetColumn="CkUser" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tb_DocIssueMNReport" GeneratorDataComponentClassName="tb_DocIssueMNReport" Name="tb_DocIssue5" UserDataComponentName="tb_DocIssueMNReport">
+            <MainSource>
+              <DbSource ConnectionRef="DBBarcode (Web.config)" DbObjectName="MN.dbo.tb_DocIssue" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[tb_DocIssue] WHERE (([IssueNo] = @Original_IssueNo))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[tb_DocIssue] ([IssueNo], [TypeHead], [IssueDate], [IssueName], [IssueDept], [IssueManager], [IssueHead], [IssueDetail], [IssuePicture], [Remark], [ManagerRemark], [Status], [MNDate], [MNName], [MNIssue], [MNIssueName], [MNStartDate], [MNEndDate], [MNRemark], [MNStatus], [MNIssuecheck], [MNIssueedit], [MNList1], [MNList2], [MNList3], [MNList4], [MNList5], [MNList6], [MNList7], [MNQty1], [MNQty2], [MNQty3], [MNQty4], [MNQty5], [MNQty6], [MNQty7], [MNUnit1], [MNUnit2], [MNUnit3], [MNUnit4], [MNUnit5], [MNUnit6], [MNUnit7]) VALUES (@IssueNo, @TypeHead, @IssueDate, @IssueName, @IssueDept, @IssueManager, @IssueHead, @IssueDetail, @IssuePicture, @Remark, @ManagerRemark, @Status, @MNDate, @MNName, @MNIssue, @MNIssueName, @MNStartDate, @MNEndDate, @MNRemark, @MNStatus, @MNIssuecheck, @MNIssueedit, @MNList1, @MNList2, @MNList3, @MNList4, @MNList5, @MNList6, @MNList7, @MNQty1, @MNQty2, @MNQty3, @MNQty4, @MNQty5, @MNQty6, @MNQty7, @MNUnit1, @MNUnit2, @MNUnit3, @MNUnit4, @MNUnit5, @MNUnit6, @MNUnit7)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@TypeHead" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="TypeHead" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@IssueDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="IssueDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueDept" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueDept" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueManager" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueManager" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueHead" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueHead" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@IssueDetail" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="IssueDetail" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssuePicture" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssuePicture" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Remark" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Remark" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@ManagerRemark" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ManagerRemark" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Status" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Status" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@MNDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="MNDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNIssue" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNIssue" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNIssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNIssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@MNStartDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="MNStartDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@MNEndDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="MNEndDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNRemark" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNRemark" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNStatus" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNStatus" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNIssuecheck" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNIssuecheck" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNIssueedit" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNIssueedit" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNList1" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNList1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNList2" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNList2" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNList3" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNList3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNList4" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNList4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNList5" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNList5" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNList6" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNList6" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNList7" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNList7" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNQty1" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNQty1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNQty2" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNQty2" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNQty3" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNQty3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNQty4" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNQty4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNQty5" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNQty5" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNQty6" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNQty6" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNQty7" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNQty7" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNUnit1" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNUnit1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNUnit2" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNUnit2" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNUnit3" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNUnit3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNUnit4" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNUnit4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNUnit5" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNUnit5" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNUnit6" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNUnit6" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNUnit7" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNUnit7" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from [dbo].[tb_DocIssue]
+Where IssueNo=@IssueNo</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="IssueNo" ColumnName="IssueNo" DataSourceName="MN.dbo.tb_DocIssue" DataTypeServer="nvarchar(14)" DbType="String" Direction="Input" ParameterName="@IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="14" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[tb_DocIssue] SET [IssueNo] = @IssueNo, [TypeHead] = @TypeHead, [IssueDate] = @IssueDate, [IssueName] = @IssueName, [IssueDept] = @IssueDept, [IssueManager] = @IssueManager, [IssueHead] = @IssueHead, [IssueDetail] = @IssueDetail, [IssuePicture] = @IssuePicture, [Remark] = @Remark, [ManagerRemark] = @ManagerRemark, [Status] = @Status, [MNDate] = @MNDate, [MNName] = @MNName, [MNIssue] = @MNIssue, [MNIssueName] = @MNIssueName, [MNStartDate] = @MNStartDate, [MNEndDate] = @MNEndDate, [MNRemark] = @MNRemark, [MNStatus] = @MNStatus, [MNIssuecheck] = @MNIssuecheck, [MNIssueedit] = @MNIssueedit, [MNList1] = @MNList1, [MNList2] = @MNList2, [MNList3] = @MNList3, [MNList4] = @MNList4, [MNList5] = @MNList5, [MNList6] = @MNList6, [MNList7] = @MNList7, [MNQty1] = @MNQty1, [MNQty2] = @MNQty2, [MNQty3] = @MNQty3, [MNQty4] = @MNQty4, [MNQty5] = @MNQty5, [MNQty6] = @MNQty6, [MNQty7] = @MNQty7, [MNUnit1] = @MNUnit1, [MNUnit2] = @MNUnit2, [MNUnit3] = @MNUnit3, [MNUnit4] = @MNUnit4, [MNUnit5] = @MNUnit5, [MNUnit6] = @MNUnit6, [MNUnit7] = @MNUnit7 WHERE (([IssueNo] = @Original_IssueNo))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@TypeHead" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="TypeHead" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@IssueDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="IssueDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueDept" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueDept" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueManager" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueManager" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssueHead" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueHead" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@IssueDetail" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="IssueDetail" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@IssuePicture" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssuePicture" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Remark" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Remark" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@ManagerRemark" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ManagerRemark" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Status" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Status" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@MNDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="MNDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNIssue" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNIssue" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNIssueName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNIssueName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@MNStartDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="MNStartDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@MNEndDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="MNEndDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNRemark" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNRemark" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNStatus" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNStatus" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNIssuecheck" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNIssuecheck" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNIssueedit" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNIssueedit" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNList1" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNList1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNList2" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNList2" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNList3" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNList3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNList4" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNList4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNList5" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNList5" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNList6" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNList6" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNList7" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNList7" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNQty1" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNQty1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNQty2" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNQty2" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNQty3" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNQty3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNQty4" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNQty4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNQty5" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNQty5" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNQty6" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNQty6" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNQty7" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNQty7" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNUnit1" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNUnit1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNUnit2" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNUnit2" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNUnit3" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNUnit3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNUnit4" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNUnit4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNUnit5" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNUnit5" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNUnit6" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNUnit6" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MNUnit7" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MNUnit7" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_IssueNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="IssueNo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IssueNo" DataSetColumn="IssueNo" />
+              <Mapping SourceColumn="TypeHead" DataSetColumn="TypeHead" />
+              <Mapping SourceColumn="IssueDate" DataSetColumn="IssueDate" />
+              <Mapping SourceColumn="IssueName" DataSetColumn="IssueName" />
+              <Mapping SourceColumn="IssueDept" DataSetColumn="IssueDept" />
+              <Mapping SourceColumn="IssueManager" DataSetColumn="IssueManager" />
+              <Mapping SourceColumn="IssueHead" DataSetColumn="IssueHead" />
+              <Mapping SourceColumn="IssueDetail" DataSetColumn="IssueDetail" />
+              <Mapping SourceColumn="IssuePicture" DataSetColumn="IssuePicture" />
+              <Mapping SourceColumn="Remark" DataSetColumn="Remark" />
+              <Mapping SourceColumn="ManagerRemark" DataSetColumn="ManagerRemark" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="MNDate" DataSetColumn="MNDate" />
+              <Mapping SourceColumn="MNName" DataSetColumn="MNName" />
+              <Mapping SourceColumn="MNIssue" DataSetColumn="MNIssue" />
+              <Mapping SourceColumn="MNIssueName" DataSetColumn="MNIssueName" />
+              <Mapping SourceColumn="MNStartDate" DataSetColumn="MNStartDate" />
+              <Mapping SourceColumn="MNEndDate" DataSetColumn="MNEndDate" />
+              <Mapping SourceColumn="MNRemark" DataSetColumn="MNRemark" />
+              <Mapping SourceColumn="MNStatus" DataSetColumn="MNStatus" />
+              <Mapping SourceColumn="MNIssuecheck" DataSetColumn="MNIssuecheck" />
+              <Mapping SourceColumn="MNIssueedit" DataSetColumn="MNIssueedit" />
+              <Mapping SourceColumn="MNList1" DataSetColumn="MNList1" />
+              <Mapping SourceColumn="MNList2" DataSetColumn="MNList2" />
+              <Mapping SourceColumn="MNList3" DataSetColumn="MNList3" />
+              <Mapping SourceColumn="MNList4" DataSetColumn="MNList4" />
+              <Mapping SourceColumn="MNList5" DataSetColumn="MNList5" />
+              <Mapping SourceColumn="MNList6" DataSetColumn="MNList6" />
+              <Mapping SourceColumn="MNList7" DataSetColumn="MNList7" />
+              <Mapping SourceColumn="MNQty1" DataSetColumn="MNQty1" />
+              <Mapping SourceColumn="MNQty2" DataSetColumn="MNQty2" />
+              <Mapping SourceColumn="MNQty3" DataSetColumn="MNQty3" />
+              <Mapping SourceColumn="MNQty4" DataSetColumn="MNQty4" />
+              <Mapping SourceColumn="MNQty5" DataSetColumn="MNQty5" />
+              <Mapping SourceColumn="MNQty6" DataSetColumn="MNQty6" />
+              <Mapping SourceColumn="MNQty7" DataSetColumn="MNQty7" />
+              <Mapping SourceColumn="MNUnit1" DataSetColumn="MNUnit1" />
+              <Mapping SourceColumn="MNUnit2" DataSetColumn="MNUnit2" />
+              <Mapping SourceColumn="MNUnit3" DataSetColumn="MNUnit3" />
+              <Mapping SourceColumn="MNUnit4" DataSetColumn="MNUnit4" />
+              <Mapping SourceColumn="MNUnit5" DataSetColumn="MNUnit5" />
+              <Mapping SourceColumn="MNUnit6" DataSetColumn="MNUnit6" />
+              <Mapping SourceColumn="MNUnit7" DataSetColumn="MNUnit7" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ProjectDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ProjectDataSet" msprop:Generator_UserDSName="ProjectDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msdata:CaseSensitive="False" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tb_StockMov" msprop:Generator_TableClassName="tb_StockMovDataTable" msprop:Generator_TableVarName="tabletb_StockMov" msprop:Generator_TablePropName="tb_StockMov" msprop:Generator_RowDeletingName="tb_StockMovRowDeleting" msprop:Generator_RowChangingName="tb_StockMovRowChanging" msprop:Generator_RowEvHandlerName="tb_StockMovRowChangeEventHandler" msprop:Generator_RowDeletedName="tb_StockMovRowDeleted" msprop:Generator_UserTableName="tb_StockMov" msprop:Generator_RowChangedName="tb_StockMovRowChanged" msprop:Generator_RowEvArgName="tb_StockMovRowChangeEvent" msprop:Generator_RowClassName="tb_StockMovRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MovID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnMovID" msprop:Generator_ColumnPropNameInRow="MovID" msprop:Generator_ColumnPropNameInTable="MovIDColumn" msprop:Generator_UserColumnName="MovID" type="xs:decimal" />
+              <xs:element name="ItemCode" msprop:Generator_ColumnVarNameInTable="columnItemCode" msprop:Generator_ColumnPropNameInRow="ItemCode" msprop:Generator_ColumnPropNameInTable="ItemCodeColumn" msprop:Generator_UserColumnName="ItemCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ItemName" msprop:Generator_ColumnVarNameInTable="columnItemName" msprop:Generator_ColumnPropNameInRow="ItemName" msprop:Generator_ColumnPropNameInTable="ItemNameColumn" msprop:Generator_UserColumnName="ItemName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Location" msprop:Generator_ColumnVarNameInTable="columnLocation" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn" msprop:Generator_UserColumnName="Location" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="QtyIn" msprop:Generator_ColumnVarNameInTable="columnQtyIn" msprop:Generator_ColumnPropNameInRow="QtyIn" msprop:Generator_ColumnPropNameInTable="QtyInColumn" msprop:Generator_UserColumnName="QtyIn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CreateDate" msprop:Generator_ColumnVarNameInTable="columnCreateDate" msprop:Generator_ColumnPropNameInRow="CreateDate" msprop:Generator_ColumnPropNameInTable="CreateDateColumn" msprop:Generator_UserColumnName="CreateDate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_RowClassName="DataTable2Row" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="A__x0020_GetReport" msprop:Generator_TableClassName="A__GetReportDataTable" msprop:Generator_TableVarName="tableA__GetReport" msprop:Generator_TablePropName="A__GetReport" msprop:Generator_RowDeletingName="A__GetReportRowDeleting" msprop:Generator_RowChangingName="A__GetReportRowChanging" msprop:Generator_RowEvHandlerName="A__GetReportRowChangeEventHandler" msprop:Generator_RowDeletedName="A__GetReportRowDeleted" msprop:Generator_UserTableName="A_ GetReport" msprop:Generator_RowChangedName="A__GetReportRowChanged" msprop:Generator_RowEvArgName="A__GetReportRowChangeEvent" msprop:Generator_RowClassName="A__GetReportRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Row" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRow" msprop:Generator_ColumnPropNameInRow="Row" msprop:Generator_ColumnPropNameInTable="RowColumn" msprop:Generator_UserColumnName="Row" type="xs:long" minOccurs="0" />
+              <xs:element name="ItemCode" msprop:Generator_ColumnVarNameInTable="columnItemCode" msprop:Generator_ColumnPropNameInRow="ItemCode" msprop:Generator_ColumnPropNameInTable="ItemCodeColumn" msprop:Generator_UserColumnName="ItemCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ItemName" msprop:Generator_ColumnVarNameInTable="columnItemName" msprop:Generator_ColumnPropNameInRow="ItemName" msprop:Generator_ColumnPropNameInTable="ItemNameColumn" msprop:Generator_UserColumnName="ItemName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Location" msprop:Generator_ColumnVarNameInTable="columnLocation" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn" msprop:Generator_UserColumnName="Location" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="QtyIn" msprop:Generator_ColumnVarNameInTable="columnQtyIn" msprop:Generator_ColumnPropNameInRow="QtyIn" msprop:Generator_ColumnPropNameInTable="QtyInColumn" msprop:Generator_UserColumnName="QtyIn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Employee" msprop:Generator_ColumnVarNameInTable="columnEmployee" msprop:Generator_ColumnPropNameInRow="Employee" msprop:Generator_ColumnPropNameInTable="EmployeeColumn" msprop:Generator_UserColumnName="Employee" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CreateDate" msprop:Generator_ColumnVarNameInTable="columnCreateDate" msprop:Generator_ColumnPropNameInRow="CreateDate" msprop:Generator_ColumnPropNameInTable="CreateDateColumn" msprop:Generator_UserColumnName="CreateDate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tb_Emp" msprop:Generator_TableClassName="tb_EmpDataTable" msprop:Generator_TableVarName="tabletb_Emp" msprop:Generator_TablePropName="tb_Emp" msprop:Generator_RowDeletingName="tb_EmpRowDeleting" msprop:Generator_RowChangingName="tb_EmpRowChanging" msprop:Generator_RowEvHandlerName="tb_EmpRowChangeEventHandler" msprop:Generator_RowDeletedName="tb_EmpRowDeleted" msprop:Generator_UserTableName="tb_Emp" msprop:Generator_RowChangedName="tb_EmpRowChanged" msprop:Generator_RowEvArgName="tb_EmpRowChangeEvent" msprop:Generator_RowClassName="tb_EmpRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EMPCode" msprop:Generator_ColumnVarNameInTable="columnEMPCode" msprop:Generator_ColumnPropNameInRow="EMPCode" msprop:Generator_ColumnPropNameInTable="EMPCodeColumn" msprop:Generator_UserColumnName="EMPCode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMPName" msprop:Generator_ColumnVarNameInTable="columnEMPName" msprop:Generator_ColumnPropNameInRow="EMPName" msprop:Generator_ColumnPropNameInTable="EMPNameColumn" msprop:Generator_UserColumnName="EMPName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable3" msprop:Generator_TableClassName="DataTable3DataTable" msprop:Generator_TableVarName="tableDataTable3" msprop:Generator_RowChangedName="DataTable3RowChanged" msprop:Generator_TablePropName="DataTable3" msprop:Generator_RowDeletingName="DataTable3RowDeleting" msprop:Generator_RowChangingName="DataTable3RowChanging" msprop:Generator_RowEvHandlerName="DataTable3RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable3RowDeleted" msprop:Generator_RowClassName="DataTable3Row" msprop:Generator_UserTableName="DataTable3" msprop:Generator_RowEvArgName="DataTable3RowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tb_DocIssue" msprop:Generator_TableClassName="tb_DocIssueDataTable" msprop:Generator_TableVarName="tabletb_DocIssue" msprop:Generator_TablePropName="tb_DocIssue" msprop:Generator_RowDeletingName="tb_DocIssueRowDeleting" msprop:Generator_RowChangingName="tb_DocIssueRowChanging" msprop:Generator_RowEvHandlerName="tb_DocIssueRowChangeEventHandler" msprop:Generator_RowDeletedName="tb_DocIssueRowDeleted" msprop:Generator_UserTableName="tb_DocIssue" msprop:Generator_RowChangedName="tb_DocIssueRowChanged" msprop:Generator_RowEvArgName="tb_DocIssueRowChangeEvent" msprop:Generator_RowClassName="tb_DocIssueRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IssueNo" msprop:Generator_ColumnVarNameInTable="columnIssueNo" msprop:Generator_ColumnPropNameInRow="IssueNo" msprop:Generator_ColumnPropNameInTable="IssueNoColumn" msprop:Generator_UserColumnName="IssueNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueName" msprop:Generator_ColumnVarNameInTable="columnIssueName" msprop:Generator_ColumnPropNameInRow="IssueName" msprop:Generator_ColumnPropNameInTable="IssueNameColumn" msprop:Generator_UserColumnName="IssueName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueDate" msprop:Generator_ColumnVarNameInTable="columnIssueDate" msprop:Generator_ColumnPropNameInRow="IssueDate" msprop:Generator_ColumnPropNameInTable="IssueDateColumn" msprop:Generator_UserColumnName="IssueDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="IssueDept" msprop:Generator_ColumnVarNameInTable="columnIssueDept" msprop:Generator_ColumnPropNameInRow="IssueDept" msprop:Generator_ColumnPropNameInTable="IssueDeptColumn" msprop:Generator_UserColumnName="IssueDept" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueHead" msprop:Generator_ColumnVarNameInTable="columnIssueHead" msprop:Generator_ColumnPropNameInRow="IssueHead" msprop:Generator_ColumnPropNameInTable="IssueHeadColumn" msprop:Generator_UserColumnName="IssueHead" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNName" msprop:Generator_ColumnVarNameInTable="columnMNName" msprop:Generator_ColumnPropNameInRow="MNName" msprop:Generator_ColumnPropNameInTable="MNNameColumn" msprop:Generator_UserColumnName="MNName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNDate" msprop:Generator_ColumnVarNameInTable="columnMNDate" msprop:Generator_ColumnPropNameInRow="MNDate" msprop:Generator_ColumnPropNameInTable="MNDateColumn" msprop:Generator_UserColumnName="MNDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="MNIssueName" msprop:Generator_ColumnVarNameInTable="columnMNIssueName" msprop:Generator_ColumnPropNameInRow="MNIssueName" msprop:Generator_ColumnPropNameInTable="MNIssueNameColumn" msprop:Generator_UserColumnName="MNIssueName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ManagerRemark" msprop:Generator_ColumnVarNameInTable="columnManagerRemark" msprop:Generator_ColumnPropNameInRow="ManagerRemark" msprop:Generator_ColumnPropNameInTable="ManagerRemarkColumn" msprop:Generator_UserColumnName="ManagerRemark" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNStatus" msprop:Generator_ColumnVarNameInTable="columnMNStatus" msprop:Generator_ColumnPropNameInRow="MNStatus" msprop:Generator_ColumnPropNameInTable="MNStatusColumn" msprop:Generator_UserColumnName="MNStatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CkUser" msprop:Generator_ColumnVarNameInTable="columnCkUser" msprop:Generator_ColumnPropNameInRow="CkUser" msprop:Generator_ColumnPropNameInTable="CkUserColumn" msprop:Generator_UserColumnName="CkUser" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tb_DocIssue1" msprop:Generator_TableClassName="tb_DocIssue1DataTable" msprop:Generator_TableVarName="tabletb_DocIssue1" msprop:Generator_RowChangedName="tb_DocIssue1RowChanged" msprop:Generator_TablePropName="tb_DocIssue1" msprop:Generator_RowDeletingName="tb_DocIssue1RowDeleting" msprop:Generator_RowChangingName="tb_DocIssue1RowChanging" msprop:Generator_RowEvHandlerName="tb_DocIssue1RowChangeEventHandler" msprop:Generator_RowDeletedName="tb_DocIssue1RowDeleted" msprop:Generator_RowClassName="tb_DocIssue1Row" msprop:Generator_UserTableName="tb_DocIssue1" msprop:Generator_RowEvArgName="tb_DocIssue1RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IssueNo" msprop:Generator_ColumnVarNameInTable="columnIssueNo" msprop:Generator_ColumnPropNameInRow="IssueNo" msprop:Generator_ColumnPropNameInTable="IssueNoColumn" msprop:Generator_UserColumnName="IssueNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="14" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueName" msprop:Generator_ColumnVarNameInTable="columnIssueName" msprop:Generator_ColumnPropNameInRow="IssueName" msprop:Generator_ColumnPropNameInTable="IssueNameColumn" msprop:Generator_UserColumnName="IssueName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueDate" msprop:Generator_ColumnVarNameInTable="columnIssueDate" msprop:Generator_ColumnPropNameInRow="IssueDate" msprop:Generator_ColumnPropNameInTable="IssueDateColumn" msprop:Generator_UserColumnName="IssueDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="IssueDept" msprop:Generator_ColumnVarNameInTable="columnIssueDept" msprop:Generator_ColumnPropNameInRow="IssueDept" msprop:Generator_ColumnPropNameInTable="IssueDeptColumn" msprop:Generator_UserColumnName="IssueDept" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueHead" msprop:Generator_ColumnVarNameInTable="columnIssueHead" msprop:Generator_ColumnPropNameInRow="IssueHead" msprop:Generator_ColumnPropNameInTable="IssueHeadColumn" msprop:Generator_UserColumnName="IssueHead" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueDetail" msprop:Generator_ColumnVarNameInTable="columnIssueDetail" msprop:Generator_ColumnPropNameInRow="IssueDetail" msprop:Generator_ColumnPropNameInTable="IssueDetailColumn" msprop:Generator_UserColumnName="IssueDetail" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" msprop:Generator_UserColumnName="Remark" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tb_DocIssue2" msprop:Generator_TableClassName="tb_DocIssue2DataTable" msprop:Generator_TableVarName="tabletb_DocIssue2" msprop:Generator_TablePropName="tb_DocIssue2" msprop:Generator_RowDeletingName="tb_DocIssue2RowDeleting" msprop:Generator_RowChangingName="tb_DocIssue2RowChanging" msprop:Generator_RowEvHandlerName="tb_DocIssue2RowChangeEventHandler" msprop:Generator_RowDeletedName="tb_DocIssue2RowDeleted" msprop:Generator_UserTableName="tb_DocIssue2" msprop:Generator_RowChangedName="tb_DocIssue2RowChanged" msprop:Generator_RowEvArgName="tb_DocIssue2RowChangeEvent" msprop:Generator_RowClassName="tb_DocIssue2Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IssueNo" msprop:Generator_ColumnVarNameInTable="columnIssueNo" msprop:Generator_ColumnPropNameInRow="IssueNo" msprop:Generator_ColumnPropNameInTable="IssueNoColumn" msprop:Generator_UserColumnName="IssueNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="14" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueName" msprop:Generator_ColumnVarNameInTable="columnIssueName" msprop:Generator_ColumnPropNameInRow="IssueName" msprop:Generator_ColumnPropNameInTable="IssueNameColumn" msprop:Generator_UserColumnName="IssueName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueDate" msprop:Generator_ColumnVarNameInTable="columnIssueDate" msprop:Generator_ColumnPropNameInRow="IssueDate" msprop:Generator_ColumnPropNameInTable="IssueDateColumn" msprop:Generator_UserColumnName="IssueDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="IssueDept" msprop:Generator_ColumnVarNameInTable="columnIssueDept" msprop:Generator_ColumnPropNameInRow="IssueDept" msprop:Generator_ColumnPropNameInTable="IssueDeptColumn" msprop:Generator_UserColumnName="IssueDept" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueHead" msprop:Generator_ColumnVarNameInTable="columnIssueHead" msprop:Generator_ColumnPropNameInRow="IssueHead" msprop:Generator_ColumnPropNameInTable="IssueHeadColumn" msprop:Generator_UserColumnName="IssueHead" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueDetail" msprop:Generator_ColumnVarNameInTable="columnIssueDetail" msprop:Generator_ColumnPropNameInRow="IssueDetail" msprop:Generator_ColumnPropNameInTable="IssueDetailColumn" msprop:Generator_UserColumnName="IssueDetail" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" msprop:Generator_UserColumnName="Remark" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNName" msprop:Generator_ColumnVarNameInTable="columnMNName" msprop:Generator_ColumnPropNameInRow="MNName" msprop:Generator_ColumnPropNameInTable="MNNameColumn" msprop:Generator_UserColumnName="MNName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNDate" msprop:Generator_ColumnVarNameInTable="columnMNDate" msprop:Generator_ColumnPropNameInRow="MNDate" msprop:Generator_ColumnPropNameInTable="MNDateColumn" msprop:Generator_UserColumnName="MNDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="MNIssueName" msprop:Generator_ColumnVarNameInTable="columnMNIssueName" msprop:Generator_ColumnPropNameInRow="MNIssueName" msprop:Generator_ColumnPropNameInTable="MNIssueNameColumn" msprop:Generator_UserColumnName="MNIssueName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNStatus" msprop:Generator_ColumnVarNameInTable="columnMNStatus" msprop:Generator_ColumnPropNameInRow="MNStatus" msprop:Generator_ColumnPropNameInTable="MNStatusColumn" msprop:Generator_UserColumnName="MNStatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tb_DocIssue3" msprop:Generator_TableClassName="tb_DocIssue3DataTable" msprop:Generator_TableVarName="tabletb_DocIssue3" msprop:Generator_TablePropName="tb_DocIssue3" msprop:Generator_RowDeletingName="tb_DocIssue3RowDeleting" msprop:Generator_RowChangingName="tb_DocIssue3RowChanging" msprop:Generator_RowEvHandlerName="tb_DocIssue3RowChangeEventHandler" msprop:Generator_RowDeletedName="tb_DocIssue3RowDeleted" msprop:Generator_UserTableName="tb_DocIssue3" msprop:Generator_RowChangedName="tb_DocIssue3RowChanged" msprop:Generator_RowEvArgName="tb_DocIssue3RowChangeEvent" msprop:Generator_RowClassName="tb_DocIssue3Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IssueNo" msprop:Generator_ColumnVarNameInTable="columnIssueNo" msprop:Generator_ColumnPropNameInRow="IssueNo" msprop:Generator_ColumnPropNameInTable="IssueNoColumn" msprop:Generator_UserColumnName="IssueNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="14" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueName" msprop:Generator_ColumnVarNameInTable="columnIssueName" msprop:Generator_ColumnPropNameInRow="IssueName" msprop:Generator_ColumnPropNameInTable="IssueNameColumn" msprop:Generator_UserColumnName="IssueName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueDate" msprop:Generator_ColumnVarNameInTable="columnIssueDate" msprop:Generator_ColumnPropNameInRow="IssueDate" msprop:Generator_ColumnPropNameInTable="IssueDateColumn" msprop:Generator_UserColumnName="IssueDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="IssueDept" msprop:Generator_ColumnVarNameInTable="columnIssueDept" msprop:Generator_ColumnPropNameInRow="IssueDept" msprop:Generator_ColumnPropNameInTable="IssueDeptColumn" msprop:Generator_UserColumnName="IssueDept" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueHead" msprop:Generator_ColumnVarNameInTable="columnIssueHead" msprop:Generator_ColumnPropNameInRow="IssueHead" msprop:Generator_ColumnPropNameInTable="IssueHeadColumn" msprop:Generator_UserColumnName="IssueHead" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ManagerRemark" msprop:Generator_ColumnVarNameInTable="columnManagerRemark" msprop:Generator_ColumnPropNameInRow="ManagerRemark" msprop:Generator_ColumnPropNameInTable="ManagerRemarkColumn" msprop:Generator_UserColumnName="ManagerRemark" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNName" msprop:Generator_ColumnVarNameInTable="columnMNName" msprop:Generator_ColumnPropNameInRow="MNName" msprop:Generator_ColumnPropNameInTable="MNNameColumn" msprop:Generator_UserColumnName="MNName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNDate" msprop:Generator_ColumnVarNameInTable="columnMNDate" msprop:Generator_ColumnPropNameInRow="MNDate" msprop:Generator_ColumnPropNameInTable="MNDateColumn" msprop:Generator_UserColumnName="MNDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="MNIssueName" msprop:Generator_ColumnVarNameInTable="columnMNIssueName" msprop:Generator_ColumnPropNameInRow="MNIssueName" msprop:Generator_ColumnPropNameInTable="MNIssueNameColumn" msprop:Generator_UserColumnName="MNIssueName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNStatus" msprop:Generator_ColumnVarNameInTable="columnMNStatus" msprop:Generator_ColumnPropNameInRow="MNStatus" msprop:Generator_ColumnPropNameInTable="MNStatusColumn" msprop:Generator_UserColumnName="MNStatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TypeHead" msprop:Generator_ColumnVarNameInTable="columnTypeHead" msprop:Generator_ColumnPropNameInRow="TypeHead" msprop:Generator_ColumnPropNameInTable="TypeHeadColumn" msprop:Generator_UserColumnName="TypeHead" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CkUser" msprop:Generator_ColumnVarNameInTable="columnCkUser" msprop:Generator_ColumnPropNameInRow="CkUser" msprop:Generator_ColumnPropNameInTable="CkUserColumn" msprop:Generator_UserColumnName="CkUser" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tb_DocIssue4" msprop:Generator_TableClassName="tb_DocIssue4DataTable" msprop:Generator_TableVarName="tabletb_DocIssue4" msprop:Generator_RowChangedName="tb_DocIssue4RowChanged" msprop:Generator_TablePropName="tb_DocIssue4" msprop:Generator_RowDeletingName="tb_DocIssue4RowDeleting" msprop:Generator_RowChangingName="tb_DocIssue4RowChanging" msprop:Generator_RowEvHandlerName="tb_DocIssue4RowChangeEventHandler" msprop:Generator_RowDeletedName="tb_DocIssue4RowDeleted" msprop:Generator_RowClassName="tb_DocIssue4Row" msprop:Generator_UserTableName="tb_DocIssue4" msprop:Generator_RowEvArgName="tb_DocIssue4RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IssueNo" msprop:Generator_ColumnVarNameInTable="columnIssueNo" msprop:Generator_ColumnPropNameInRow="IssueNo" msprop:Generator_ColumnPropNameInTable="IssueNoColumn" msprop:Generator_UserColumnName="IssueNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="14" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueName" msprop:Generator_ColumnVarNameInTable="columnIssueName" msprop:Generator_ColumnPropNameInRow="IssueName" msprop:Generator_ColumnPropNameInTable="IssueNameColumn" msprop:Generator_UserColumnName="IssueName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueDate" msprop:Generator_ColumnVarNameInTable="columnIssueDate" msprop:Generator_ColumnPropNameInRow="IssueDate" msprop:Generator_ColumnPropNameInTable="IssueDateColumn" msprop:Generator_UserColumnName="IssueDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="IssueDept" msprop:Generator_ColumnVarNameInTable="columnIssueDept" msprop:Generator_ColumnPropNameInRow="IssueDept" msprop:Generator_ColumnPropNameInTable="IssueDeptColumn" msprop:Generator_UserColumnName="IssueDept" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueHead" msprop:Generator_ColumnVarNameInTable="columnIssueHead" msprop:Generator_ColumnPropNameInRow="IssueHead" msprop:Generator_ColumnPropNameInTable="IssueHeadColumn" msprop:Generator_UserColumnName="IssueHead" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ManagerRemark" msprop:Generator_ColumnVarNameInTable="columnManagerRemark" msprop:Generator_ColumnPropNameInRow="ManagerRemark" msprop:Generator_ColumnPropNameInTable="ManagerRemarkColumn" msprop:Generator_UserColumnName="ManagerRemark" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNName" msprop:Generator_ColumnVarNameInTable="columnMNName" msprop:Generator_ColumnPropNameInRow="MNName" msprop:Generator_ColumnPropNameInTable="MNNameColumn" msprop:Generator_UserColumnName="MNName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNDate" msprop:Generator_ColumnVarNameInTable="columnMNDate" msprop:Generator_ColumnPropNameInRow="MNDate" msprop:Generator_ColumnPropNameInTable="MNDateColumn" msprop:Generator_UserColumnName="MNDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="MNIssueName" msprop:Generator_ColumnVarNameInTable="columnMNIssueName" msprop:Generator_ColumnPropNameInRow="MNIssueName" msprop:Generator_ColumnPropNameInTable="MNIssueNameColumn" msprop:Generator_UserColumnName="MNIssueName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNStatus" msprop:Generator_ColumnVarNameInTable="columnMNStatus" msprop:Generator_ColumnPropNameInRow="MNStatus" msprop:Generator_ColumnPropNameInTable="MNStatusColumn" msprop:Generator_UserColumnName="MNStatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TypeHead" msprop:Generator_ColumnVarNameInTable="columnTypeHead" msprop:Generator_ColumnPropNameInRow="TypeHead" msprop:Generator_ColumnPropNameInTable="TypeHeadColumn" msprop:Generator_UserColumnName="TypeHead" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CkUser" msprop:Generator_ColumnVarNameInTable="columnCkUser" msprop:Generator_ColumnPropNameInRow="CkUser" msprop:Generator_ColumnPropNameInTable="CkUserColumn" msprop:Generator_UserColumnName="CkUser" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tb_DocIssue5" msprop:Generator_TableClassName="tb_DocIssue5DataTable" msprop:Generator_TableVarName="tabletb_DocIssue5" msprop:Generator_TablePropName="tb_DocIssue5" msprop:Generator_RowDeletingName="tb_DocIssue5RowDeleting" msprop:Generator_RowChangingName="tb_DocIssue5RowChanging" msprop:Generator_RowEvHandlerName="tb_DocIssue5RowChangeEventHandler" msprop:Generator_RowDeletedName="tb_DocIssue5RowDeleted" msprop:Generator_UserTableName="tb_DocIssue5" msprop:Generator_RowChangedName="tb_DocIssue5RowChanged" msprop:Generator_RowEvArgName="tb_DocIssue5RowChangeEvent" msprop:Generator_RowClassName="tb_DocIssue5Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IssueNo" msprop:Generator_ColumnVarNameInTable="columnIssueNo" msprop:Generator_ColumnPropNameInRow="IssueNo" msprop:Generator_ColumnPropNameInTable="IssueNoColumn" msprop:Generator_UserColumnName="IssueNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="14" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TypeHead" msprop:Generator_ColumnVarNameInTable="columnTypeHead" msprop:Generator_ColumnPropNameInRow="TypeHead" msprop:Generator_ColumnPropNameInTable="TypeHeadColumn" msprop:Generator_UserColumnName="TypeHead" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueDate" msprop:Generator_ColumnVarNameInTable="columnIssueDate" msprop:Generator_ColumnPropNameInRow="IssueDate" msprop:Generator_ColumnPropNameInTable="IssueDateColumn" msprop:Generator_UserColumnName="IssueDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="IssueName" msprop:Generator_ColumnVarNameInTable="columnIssueName" msprop:Generator_ColumnPropNameInRow="IssueName" msprop:Generator_ColumnPropNameInTable="IssueNameColumn" msprop:Generator_UserColumnName="IssueName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueDept" msprop:Generator_ColumnVarNameInTable="columnIssueDept" msprop:Generator_ColumnPropNameInRow="IssueDept" msprop:Generator_ColumnPropNameInTable="IssueDeptColumn" msprop:Generator_UserColumnName="IssueDept" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueManager" msprop:Generator_ColumnVarNameInTable="columnIssueManager" msprop:Generator_ColumnPropNameInRow="IssueManager" msprop:Generator_ColumnPropNameInTable="IssueManagerColumn" msprop:Generator_UserColumnName="IssueManager" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueHead" msprop:Generator_ColumnVarNameInTable="columnIssueHead" msprop:Generator_ColumnPropNameInRow="IssueHead" msprop:Generator_ColumnPropNameInTable="IssueHeadColumn" msprop:Generator_UserColumnName="IssueHead" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssueDetail" msprop:Generator_ColumnVarNameInTable="columnIssueDetail" msprop:Generator_ColumnPropNameInRow="IssueDetail" msprop:Generator_ColumnPropNameInTable="IssueDetailColumn" msprop:Generator_UserColumnName="IssueDetail" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssuePicture" msprop:Generator_ColumnVarNameInTable="columnIssuePicture" msprop:Generator_ColumnPropNameInRow="IssuePicture" msprop:Generator_ColumnPropNameInTable="IssuePictureColumn" msprop:Generator_UserColumnName="IssuePicture" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" msprop:Generator_UserColumnName="Remark" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ManagerRemark" msprop:Generator_ColumnVarNameInTable="columnManagerRemark" msprop:Generator_ColumnPropNameInRow="ManagerRemark" msprop:Generator_ColumnPropNameInTable="ManagerRemarkColumn" msprop:Generator_UserColumnName="ManagerRemark" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNDate" msprop:Generator_ColumnVarNameInTable="columnMNDate" msprop:Generator_ColumnPropNameInRow="MNDate" msprop:Generator_ColumnPropNameInTable="MNDateColumn" msprop:Generator_UserColumnName="MNDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="MNName" msprop:Generator_ColumnVarNameInTable="columnMNName" msprop:Generator_ColumnPropNameInRow="MNName" msprop:Generator_ColumnPropNameInTable="MNNameColumn" msprop:Generator_UserColumnName="MNName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNIssue" msprop:Generator_ColumnVarNameInTable="columnMNIssue" msprop:Generator_ColumnPropNameInRow="MNIssue" msprop:Generator_ColumnPropNameInTable="MNIssueColumn" msprop:Generator_UserColumnName="MNIssue" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNIssueName" msprop:Generator_ColumnVarNameInTable="columnMNIssueName" msprop:Generator_ColumnPropNameInRow="MNIssueName" msprop:Generator_ColumnPropNameInTable="MNIssueNameColumn" msprop:Generator_UserColumnName="MNIssueName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNStartDate" msprop:Generator_ColumnVarNameInTable="columnMNStartDate" msprop:Generator_ColumnPropNameInRow="MNStartDate" msprop:Generator_ColumnPropNameInTable="MNStartDateColumn" msprop:Generator_UserColumnName="MNStartDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="MNEndDate" msprop:Generator_ColumnVarNameInTable="columnMNEndDate" msprop:Generator_ColumnPropNameInRow="MNEndDate" msprop:Generator_ColumnPropNameInTable="MNEndDateColumn" msprop:Generator_UserColumnName="MNEndDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="MNRemark" msprop:Generator_ColumnVarNameInTable="columnMNRemark" msprop:Generator_ColumnPropNameInRow="MNRemark" msprop:Generator_ColumnPropNameInTable="MNRemarkColumn" msprop:Generator_UserColumnName="MNRemark" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNStatus" msprop:Generator_ColumnVarNameInTable="columnMNStatus" msprop:Generator_ColumnPropNameInRow="MNStatus" msprop:Generator_ColumnPropNameInTable="MNStatusColumn" msprop:Generator_UserColumnName="MNStatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNIssuecheck" msprop:Generator_ColumnVarNameInTable="columnMNIssuecheck" msprop:Generator_ColumnPropNameInRow="MNIssuecheck" msprop:Generator_ColumnPropNameInTable="MNIssuecheckColumn" msprop:Generator_UserColumnName="MNIssuecheck" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNIssueedit" msprop:Generator_ColumnVarNameInTable="columnMNIssueedit" msprop:Generator_ColumnPropNameInRow="MNIssueedit" msprop:Generator_ColumnPropNameInTable="MNIssueeditColumn" msprop:Generator_UserColumnName="MNIssueedit" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNList1" msprop:Generator_ColumnVarNameInTable="columnMNList1" msprop:Generator_ColumnPropNameInRow="MNList1" msprop:Generator_ColumnPropNameInTable="MNList1Column" msprop:Generator_UserColumnName="MNList1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNList2" msprop:Generator_ColumnVarNameInTable="columnMNList2" msprop:Generator_ColumnPropNameInRow="MNList2" msprop:Generator_ColumnPropNameInTable="MNList2Column" msprop:Generator_UserColumnName="MNList2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNList3" msprop:Generator_ColumnVarNameInTable="columnMNList3" msprop:Generator_ColumnPropNameInRow="MNList3" msprop:Generator_ColumnPropNameInTable="MNList3Column" msprop:Generator_UserColumnName="MNList3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNList4" msprop:Generator_ColumnVarNameInTable="columnMNList4" msprop:Generator_ColumnPropNameInRow="MNList4" msprop:Generator_ColumnPropNameInTable="MNList4Column" msprop:Generator_UserColumnName="MNList4" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNList5" msprop:Generator_ColumnVarNameInTable="columnMNList5" msprop:Generator_ColumnPropNameInRow="MNList5" msprop:Generator_ColumnPropNameInTable="MNList5Column" msprop:Generator_UserColumnName="MNList5" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNList6" msprop:Generator_ColumnVarNameInTable="columnMNList6" msprop:Generator_ColumnPropNameInRow="MNList6" msprop:Generator_ColumnPropNameInTable="MNList6Column" msprop:Generator_UserColumnName="MNList6" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNList7" msprop:Generator_ColumnVarNameInTable="columnMNList7" msprop:Generator_ColumnPropNameInRow="MNList7" msprop:Generator_ColumnPropNameInTable="MNList7Column" msprop:Generator_UserColumnName="MNList7" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNQty1" msprop:Generator_ColumnVarNameInTable="columnMNQty1" msprop:Generator_ColumnPropNameInRow="MNQty1" msprop:Generator_ColumnPropNameInTable="MNQty1Column" msprop:Generator_UserColumnName="MNQty1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNQty2" msprop:Generator_ColumnVarNameInTable="columnMNQty2" msprop:Generator_ColumnPropNameInRow="MNQty2" msprop:Generator_ColumnPropNameInTable="MNQty2Column" msprop:Generator_UserColumnName="MNQty2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNQty3" msprop:Generator_ColumnVarNameInTable="columnMNQty3" msprop:Generator_ColumnPropNameInRow="MNQty3" msprop:Generator_ColumnPropNameInTable="MNQty3Column" msprop:Generator_UserColumnName="MNQty3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNQty4" msprop:Generator_ColumnVarNameInTable="columnMNQty4" msprop:Generator_ColumnPropNameInRow="MNQty4" msprop:Generator_ColumnPropNameInTable="MNQty4Column" msprop:Generator_UserColumnName="MNQty4" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNQty5" msprop:Generator_ColumnVarNameInTable="columnMNQty5" msprop:Generator_ColumnPropNameInRow="MNQty5" msprop:Generator_ColumnPropNameInTable="MNQty5Column" msprop:Generator_UserColumnName="MNQty5" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNQty6" msprop:Generator_ColumnVarNameInTable="columnMNQty6" msprop:Generator_ColumnPropNameInRow="MNQty6" msprop:Generator_ColumnPropNameInTable="MNQty6Column" msprop:Generator_UserColumnName="MNQty6" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNQty7" msprop:Generator_ColumnVarNameInTable="columnMNQty7" msprop:Generator_ColumnPropNameInRow="MNQty7" msprop:Generator_ColumnPropNameInTable="MNQty7Column" msprop:Generator_UserColumnName="MNQty7" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNUnit1" msprop:Generator_ColumnVarNameInTable="columnMNUnit1" msprop:Generator_ColumnPropNameInRow="MNUnit1" msprop:Generator_ColumnPropNameInTable="MNUnit1Column" msprop:Generator_UserColumnName="MNUnit1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNUnit2" msprop:Generator_ColumnVarNameInTable="columnMNUnit2" msprop:Generator_ColumnPropNameInRow="MNUnit2" msprop:Generator_ColumnPropNameInTable="MNUnit2Column" msprop:Generator_UserColumnName="MNUnit2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNUnit3" msprop:Generator_ColumnVarNameInTable="columnMNUnit3" msprop:Generator_ColumnPropNameInRow="MNUnit3" msprop:Generator_ColumnPropNameInTable="MNUnit3Column" msprop:Generator_UserColumnName="MNUnit3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNUnit4" msprop:Generator_ColumnVarNameInTable="columnMNUnit4" msprop:Generator_ColumnPropNameInRow="MNUnit4" msprop:Generator_ColumnPropNameInTable="MNUnit4Column" msprop:Generator_UserColumnName="MNUnit4" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNUnit5" msprop:Generator_ColumnVarNameInTable="columnMNUnit5" msprop:Generator_ColumnPropNameInRow="MNUnit5" msprop:Generator_ColumnPropNameInTable="MNUnit5Column" msprop:Generator_UserColumnName="MNUnit5" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNUnit6" msprop:Generator_ColumnVarNameInTable="columnMNUnit6" msprop:Generator_ColumnPropNameInRow="MNUnit6" msprop:Generator_ColumnPropNameInTable="MNUnit6Column" msprop:Generator_UserColumnName="MNUnit6" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MNUnit7" msprop:Generator_ColumnVarNameInTable="columnMNUnit7" msprop:Generator_ColumnPropNameInRow="MNUnit7" msprop:Generator_ColumnPropNameInTable="MNUnit7Column" msprop:Generator_UserColumnName="MNUnit7" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tb_StockMov" />
+      <xs:field xpath="mstns:MovID" />
+    </xs:unique>
+    <xs:unique name="tb_Emp_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tb_Emp" />
+      <xs:field xpath="mstns:EMPCode" />
+    </xs:unique>
+    <xs:unique name="tb_DocIssue_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tb_DocIssue" />
+      <xs:field xpath="mstns:IssueNo" />
+    </xs:unique>
+    <xs:unique name="tb_DocIssue1_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tb_DocIssue1" />
+      <xs:field xpath="mstns:IssueNo" />
+    </xs:unique>
+    <xs:unique name="tb_DocIssue2_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tb_DocIssue2" />
+      <xs:field xpath="mstns:IssueNo" />
+    </xs:unique>
+    <xs:unique name="tb_DocIssue3_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tb_DocIssue3" />
+      <xs:field xpath="mstns:IssueNo" />
+    </xs:unique>
+    <xs:unique name="tb_DocIssue4_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tb_DocIssue4" />
+      <xs:field xpath="mstns:IssueNo" />
+    </xs:unique>
+    <xs:unique name="tb_DocIssue5_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tb_DocIssue5" />
+      <xs:field xpath="mstns:IssueNo" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

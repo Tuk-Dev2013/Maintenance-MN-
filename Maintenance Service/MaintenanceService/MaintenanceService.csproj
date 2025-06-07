@@ -1,0 +1,497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CF1F23B1-9932-4092-9E60-1C3F29D56993}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MaintenanceService</RootNamespace>
+    <AssemblyName>MaintenanceService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v14.2.Core, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v14.2, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v14.2, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v14.2.Core, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v14.2.Core, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v14.2.Core, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v14.2.Core, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v14.2.Core, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v14.2, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.ASPxThemes.v14.2, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.v14.2, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v14.2, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v14.2, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v14.2.Core, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v14.2, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v14.2, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v14.2.Web, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="StdTimeEditor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\StdTimeEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EmailTemplateGr.htm" />
+    <Content Include="default.aspx" />
+    <Content Include="EmailTemplate.htm" />
+    <Content Include="Employee.aspx" />
+    <Content Include="FrmPrintBal.aspx" />
+    <Content Include="FrmPrintProduction.aspx" />
+    <Content Include="Images\5008016.png" />
+    <Content Include="Images\5307019.png" />
+    <Content Include="Images\5806005.png" />
+    <Content Include="Images\5908001.png" />
+    <Content Include="Images\6107002.png" />
+    <Content Include="Images\6209007.png" />
+    <Content Include="Images\6402008.png" />
+    <Content Include="Images\6501020.png" />
+    <Content Include="Images\BK.png" />
+    <Content Include="Images\click-here-2.gif" />
+    <Content Include="Images\Click-Here.gif" />
+    <Content Include="Images\edit.png" />
+    <Content Include="Images\email.png" />
+    <Content Include="Images\email1.png" />
+    <Content Include="Images\header.png" />
+    <Content Include="Images\history.png" />
+    <Content Include="Images\ma.png" />
+    <Content Include="Images\MABG.png" />
+    <Content Include="Images\maintenanceservices.jpg" />
+    <Content Include="Images\mase.png" />
+    <Content Include="Images\MgApprove.png" />
+    <Content Include="Images\MgReject.png" />
+    <Content Include="Images\Mn.png" />
+    <Content Include="Images\MN1.png" />
+    <Content Include="Images\MNHelp.png" />
+    <Content Include="Images\pin.png" />
+    <Content Include="Images\png-transparent-preventive-maintenanceMN.png" />
+    <Content Include="Images\Print.png" />
+    <Content Include="Images\printer.png" />
+    <Content Include="Images\ReportH1.png" />
+    <Content Include="Images\ReportHH1.png" />
+    <Content Include="Images\ReportHH11.png" />
+    <Content Include="Images\ReportHH2.png" />
+    <Content Include="Images\ReportHH3.png" />
+    <Content Include="Images\ReportHH31.png" />
+    <Content Include="Images\ReportHH33.png" />
+    <Content Include="Images\ReportHH4.png" />
+    <Content Include="Images\ReportHH5.png" />
+    <Content Include="Images\ReportHH6.png" />
+    <Content Include="Images\save.png" />
+    <Content Include="Images\view.png" />
+    <Content Include="Maintenance\FrmMNReport.aspx" />
+    <Content Include="Maintenance\MaintenanceHistory.aspx" />
+    <Content Include="Maintenance\ManagerHistory.aspx" />
+    <Content Include="Maintenance\ManagerTasks.aspx" />
+    <Content Include="Maintenance\FraMain.aspx" />
+    <Content Include="Maintenance\FrmCheckStatus.aspx" />
+    <Content Include="Maintenance\FrmLogin.aspx" />
+    <Content Include="Maintenance\FrmRequest.aspx" />
+    <Content Include="Maintenance\Frmviewhistory.aspx" />
+    <Content Include="Maintenance\MaintenanceService.aspx" />
+    <Content Include="PageBarcodeIN.aspx" />
+    <Content Include="PageBarcodeOut.aspx" />
+    <Content Include="PageMovement.aspx" />
+    <Content Include="PageNeedtoOrder.aspx" />
+    <Content Include="PageOrder.aspx" />
+    <Content Include="PageStockbal.aspx" />
+    <Content Include="StockPrintBarcode.aspx" />
+    <Content Include="Style\Site.css" />
+    <Content Include="Style\stylelogin.css" />
+    <Content Include="Template\Email\MailToRequester.htm" />
+    <Content Include="Template\Email\MessageMail.htm" />
+    <Content Include="Template\Email\POEmailContent.htm" />
+    <Content Include="Template\ViewXlsX.htm" />
+    <Content Include="ViewDetails.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_code\CGlobal.cs" />
+    <Compile Include="DataAccess\ProjectDataSet.cs">
+      <DependentUpon>ProjectDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataAccess\ProjectDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.aspx.cs">
+      <DependentUpon>Employee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee.aspx.designer.cs">
+      <DependentUpon>Employee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Event\SendMail.cs" />
+    <Compile Include="FrmPrintBal.aspx.cs">
+      <DependentUpon>FrmPrintBal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FrmPrintBal.aspx.designer.cs">
+      <DependentUpon>FrmPrintBal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPrintProduction.aspx.cs">
+      <DependentUpon>FrmPrintProduction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FrmPrintProduction.aspx.designer.cs">
+      <DependentUpon>FrmPrintProduction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance\FrmMNReport.aspx.cs">
+      <DependentUpon>FrmMNReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\FrmMNReport.aspx.designer.cs">
+      <DependentUpon>FrmMNReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance\MaintenanceHistory.aspx.cs">
+      <DependentUpon>MaintenanceHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\MaintenanceHistory.aspx.designer.cs">
+      <DependentUpon>MaintenanceHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance\ManagerHistory.aspx.cs">
+      <DependentUpon>ManagerHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\ManagerHistory.aspx.designer.cs">
+      <DependentUpon>ManagerHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance\ManagerTasks.aspx.cs">
+      <DependentUpon>ManagerTasks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\ManagerTasks.aspx.designer.cs">
+      <DependentUpon>ManagerTasks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance\FraMain.aspx.cs">
+      <DependentUpon>FraMain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\FraMain.aspx.designer.cs">
+      <DependentUpon>FraMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance\FrmCheckStatus.aspx.cs">
+      <DependentUpon>FrmCheckStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\FrmCheckStatus.aspx.designer.cs">
+      <DependentUpon>FrmCheckStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance\FrmLogin.aspx.cs">
+      <DependentUpon>FrmLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\FrmLogin.aspx.designer.cs">
+      <DependentUpon>FrmLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance\FrmRequest.aspx.cs">
+      <DependentUpon>FrmRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\FrmRequest.aspx.designer.cs">
+      <DependentUpon>FrmRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance\Frmviewhistory.aspx.cs">
+      <DependentUpon>Frmviewhistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\Frmviewhistory.aspx.designer.cs">
+      <DependentUpon>Frmviewhistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance\MaintenanceService.aspx.cs">
+      <DependentUpon>MaintenanceService.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\MaintenanceService.aspx.designer.cs">
+      <DependentUpon>MaintenanceService.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\Maintenance.Master.cs">
+      <DependentUpon>Maintenance.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\Maintenance.Master.designer.cs">
+      <DependentUpon>Maintenance.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PageBarcodeIN.aspx.cs">
+      <DependentUpon>PageBarcodeIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageBarcodeIN.aspx.designer.cs">
+      <DependentUpon>PageBarcodeIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PageBarcodeOut.aspx.cs">
+      <DependentUpon>PageBarcodeOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageBarcodeOut.aspx.designer.cs">
+      <DependentUpon>PageBarcodeOut.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PageMovement.aspx.cs">
+      <DependentUpon>PageMovement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageMovement.aspx.designer.cs">
+      <DependentUpon>PageMovement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PageNeedtoOrder.aspx.cs">
+      <DependentUpon>PageNeedtoOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageNeedtoOrder.aspx.designer.cs">
+      <DependentUpon>PageNeedtoOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PageOrder.aspx.cs">
+      <DependentUpon>PageOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageOrder.aspx.designer.cs">
+      <DependentUpon>PageOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PageStockbal.aspx.cs">
+      <DependentUpon>PageStockbal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageStockbal.aspx.designer.cs">
+      <DependentUpon>PageStockbal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Report\BalanceStockInOutReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\MNIsoReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\MNIsoReport.Designer.cs">
+      <DependentUpon>MNIsoReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\StockBalReportTimeStudy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\EMPReportTimeStudy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\MovementReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\xr_MovementReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\xr_MovementReport.Designer.cs">
+      <DependentUpon>xr_MovementReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\xr_ReportProductionOoder.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\xr_ReportProductionOoder.Designer.cs">
+      <DependentUpon>xr_ReportProductionOoder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\xr_ReportTimeStudy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StockPrintBarcode.aspx.cs">
+      <DependentUpon>StockPrintBarcode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StockPrintBarcode.aspx.designer.cs">
+      <DependentUpon>StockPrintBarcode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Template\Email\POMail.cs" />
+    <Compile Include="ViewDetails.aspx.cs">
+      <DependentUpon>ViewDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewDetails.aspx.designer.cs">
+      <DependentUpon>ViewDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebConfig.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MasterPages\Site.Master" />
+    <Content Include="DataAccess\ProjectDataSet.xsc">
+      <DependentUpon>ProjectDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="DataAccess\ProjectDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>ProjectDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DataAccess\ProjectDataSet.xss">
+      <DependentUpon>ProjectDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="packages.config" />
+    <Content Include="MasterPages\Maintenance.Master" />
+    <None Include="Properties\PublishProfiles\StdTime.pubxml" />
+    <None Include="Properties\PublishProfiles\StdTime2.pubxml" />
+    <Content Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FileUpload\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Report\BalanceStockInOutReport.resx">
+      <DependentUpon>BalanceStockInOutReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\MNIsoReport.resx">
+      <DependentUpon>MNIsoReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\StockBalReportTimeStudy.resx">
+      <DependentUpon>StockBalReportTimeStudy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\EMPReportTimeStudy.resx">
+      <DependentUpon>EMPReportTimeStudy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\MovementReport.resx">
+      <DependentUpon>MovementReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\xr_MovementReport.resx">
+      <DependentUpon>xr_MovementReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\xr_ReportProductionOoder.resx">
+      <DependentUpon>xr_ReportProductionOoder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\xr_ReportTimeStudy.resx">
+      <DependentUpon>xr_ReportTimeStudy.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1067</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:10202/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

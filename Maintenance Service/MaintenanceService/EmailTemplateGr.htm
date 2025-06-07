@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+		<title></title>
+	    <style type="text/css">
+            .style1
+            {
+                width: 130px;
+            }
+            .style2
+            {
+                color: #0066CC;
+            }
+            .auto-style1
+            {
+                font-size: medium;
+            }
+            .auto-style2
+            {
+                color: #0066CC;
+                font-size: medium;
+            }
+            .auto-style3
+            {
+                font-size: large;
+            }
+        </style>
+	</head>
+	<body>
+	
+	    <p>
+            <strong><span class="auto-style3">เรียน</span></strong> <strong><span class="auto-style3">ทีมซ่อมบำรุง</span></strong>,</p>
+        <p>
+            &nbsp;<strong>{_Action}.</strong></p>
+        <p>
+            <table style="border-style: solid; border-width: thin; width:100%; background-color: #F0F0F0;">
+                <tr>
+                    <td class="style1" style="border: thin groove #C0C0C0">
+                         Manager.</td>
+                    <td style="border: thin groove #C0C0C0; background-color: #FFFFFF; color: #0000FF;" class="auto-style1">
+                        {_Manager}</td>
+                </tr>
+                <tr>
+                    <td class="style1" style="border: thin groove #C0C0C0">
+                         Issue No.</td>
+                    <td style="border: thin groove #C0C0C0; background-color: #FFFFFF;" class="auto-style1">
+                        {_PONumber}</td>
+                </tr>
+                <tr>
+                    <td class="style1" style="border: thin groove #C0C0C0">
+                        Title :
+                    </td>
+                    <td style="border: thin groove #C0C0C0; background-color: #FFFFFF;" class="auto-style1">
+                        {_Title}</td>
+                </tr>
+                <tr>
+                    <td class="style1" style="border: thin groove #C0C0C0">
+                        Description :
+                    </td>
+                    <td style="border: thin groove #C0C0C0; background-color: #FFFFFF;" class="auto-style1">
+                        {_Description}</td>
+                </tr>
+                <tr>
+                    <td class="style1" style="border: thin groove #C0C0C0">
+                        Dept :
+                    </td>
+                    <td style="border: thin groove #C0C0C0; background-color: #FFFFFF;">
+                        {_Dept}</td>
+                </tr>
+                <tr>
+                    <td class="style1" style="border: thin groove #C0C0C0">
+                        Click this link :</td>
+                    <td style="border: thin groove #C0C0C0; background-color: #FFFFFF;">
+                        <a href="{_ActionURL}">Click here</a></td>
+                </tr>
+            </table>
+        </p>
+        <p>
+            Best Regards,</p>
+        <p>
+            <span class="auto-style2">{_Sendername}</span><br class="auto-style1" />
+            <span class="style2"><strong>{_Position} | La-Z-Boy (Thailand) Ltd.</strong></span><br 
+                class="style2" />
+            <span class="style2">23/1-2 M.5 Nongbondang Banbueng Chonburi 20170 Thailand</span><br 
+                class="style2" />
+            <span class="style2">Tel +66 (0) 38 460999 ext. 116 | Fax +66 (0) 38 460900
+            </span><br />
+            </p>
+	
+	</body>
+</html>
